@@ -1,0 +1,55 @@
+<!--<h1>Share your salary info!</h1>-->
+<div class="row">
+        <div class="span6">
+		<h2>Share your salary!</h2>
+		<p>Have you ever worried that your colleagues, doing the same job, make more money than you? According to a recent Glassdoor survey, 39% of Americans feel they're underpaid.</p>
+		<p>Or maybe you're curious how you rank compared to your high school class?</p>
+		<p>Maybe someone on your team is getting underpaid, but you're not comfortable talking about salaries.</p>
+		<p>Then create a free, anonymous salary survey!</p>
+	</div>
+	<div class="span6">
+		<form>
+			<fieldset>
+			<legend>Create a survey</legend>
+			<label>Survey Name</label>	
+			<input class="input-xlarge" name="surveyName" type="text" placeholder="Employer, team name, or totally arbitratry" />
+			<label>Currency</label>
+			<select class="input-small" name="currency">
+				<option value="USD">USD</option>
+				<option value="CAD">CAD</option>
+			</select>
+			<label>Period</label>
+		        <select class="input-small" name="period">
+	                	<option value="Per Year">Per Year</option>
+        	        	<option value="Per Hour">Per Hour</option>
+	        	</select>
+			<label>Minimum number of responses <i class="icon-question-sign" data-toggle="popover" data-placement="top" title="Miniumum number of responses" data-content="In order to ensure anonymity, salary survey results won't be published until a minimum number of salary responses are submitted. Set this to '0' if you don't care about anonymity."></i></label>
+			<input name="minEntries" type="number" value=5 />
+			<p><input id="submit" type="submit" class="btn btn-success" value="Submit" /></p>
+		</form>
+	</div>
+</div>
+<script>
+	$( "form" ).on( "submit", function( event ) {
+		event.preventDefault();
+		var datastring = $( "form" ).serialize();
+		$.ajax({
+		    type: "POST",
+		    url: "/api/v1/survey/AddSurvey",
+		    data: datastring,
+		    dataType: "json",
+		    success: function(data) {
+			//var parsedJSON = $.parseJSON(data);
+			//alert(data);
+			//alert(typeof data);
+			//alert(data.name);
+		    	window.location.href = "/thanks/" + data.name;
+		    },
+		    error: function(){
+		          alert('Oops... something wrong');
+		    }
+		});		
+
+
+	});
+</script>

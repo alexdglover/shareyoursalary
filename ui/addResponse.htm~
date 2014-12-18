@@ -1,0 +1,50 @@
+<h2>You've been invited!</h1>
+<div class="row">
+        <div class="span6">
+		<legend>Wait, what's going on?</legend>
+		<p>You've been invited to participate in an anonymous survey about salaries. Someone has already created the survey and invited you and others to participate. Your salary information is totally anonymous - no login or email address is required. To ensure anonymity, the results of the survey aren't published until a minimum number of responses are made (see below).</p> 
+
+		<p>Survey name: <?php echo $survey['name']; ?></p>
+		<p>Minimum number of responses before results published: <?php echo $survey['minEntries']; ?></p>
+		<p>Current number of responses: <?php echo count($survey['responses']); ?>
+	</div>
+	<div class="span6">
+		<legend>Next Steps</legend>
+		<ol>
+			<li>Enter your salary<br />
+				<form>
+				<div class="input-append">
+					<input name="response" type="text" pattern="[1-9]{1}[0-9]*(\.)?([0-9]{0,2})"
+
+"^\$?([1-9]{1}[0-9]{0,2}(\,[0-9]{3})*(\.[0-9]{0,2})?|[1-9]{1}[0-9]{0,}(\.[0-9]{0,2})?|0(\.[0-9]{0,2})?|(\.[0-9]{1,2})?)$" placeholder="Enter your salary" />
+					<span class="add-on"><?php echo $survey['currency'] ?>&nbsp;<?php echo $survey['period'] ?></span>
+				</div>
+				<input id="submit" type="submit" class="btn btn-success" value="Submit" />
+				</form>
+			</li>
+			<li>
+				Once the minimum number of entries are met, see the salary analysis report here: <a href="<?php echo "http://$_SERVER[HTTP_HOST]" . "/report/" . $survey['name']; ?>"><?php echo "http://$_SERVER[HTTP_HOST]" . "/report/" . $survey['name']; ?></a>
+			</li>
+		</ol>
+	</div>
+</div>
+<script>
+	$( "form" ).on( "submit", function( event ) {
+		event.preventDefault();
+		var datastring = $( "form" ).serialize();
+		$.ajax({
+		    type: "POST",
+		    url: "/api/v1/survey/addResponse/<?php echo $survey['name'] ?>",
+		    data: datastring,
+		    dataType: "json",
+		    success: function(data) {
+			alert("Thanks! You've successfully entered your salary information.");
+		    },
+		    error: function(){
+		          alert('Oops... something wrong');
+		    }
+		});		
+
+
+	});
+</script>

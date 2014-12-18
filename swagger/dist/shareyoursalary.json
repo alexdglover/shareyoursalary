@@ -1,0 +1,156 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "0.0.1",
+        "title": "Share Your Salary"
+    },
+    "basePath": "/api/v1",
+    "paths": {
+        "/survey/getByName/{name}": {
+            "get": {
+                "description": "Gets `Survey` objects.\nRequired query param of **name** will be used as search criteria.\nShould only return one object.\nIf minimum entries haven't been met, responses will not be included in return data.\n",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "path",
+                        "description": "name of survey",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "title": "SurveyJSON",
+                            "type": "array",
+                            "items": {
+                                "title": "Survey",
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "currency": {
+                                        "type": "string"
+                                    },
+                                    "period": {
+                                        "type": "string"
+                                    },
+                                    "minEntries": {
+                                        "type": "number"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/survey/addResponse/{name}": {
+            "post": {
+                "description": "Adds a single response value to an existing survey.\nRequired query params of **name** (used to \nfind the survey to be updated) and **response** (salary value from respondent.\n",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "path",
+                        "description": "name of survey",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+		    {
+                        "name": "response",
+                        "in": "query",
+                        "description": "response value",
+                        "required": true,
+                        "type": "number",
+                        "format": "number"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "title": "SurveyJSON",
+                            "type": "array",
+                            "items": {
+                                "title": "Survey",
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "response": {
+                                        "type": "number"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+	"/survey/addSurvey": {
+            "post": {
+                "description": "Creates a new survey.\nRequired query params of **name**, **currency**, **period**, and **minEntries**.\n",
+                "parameters": [
+                    {
+                        "name": "surveyName",
+                        "in": "query",
+                        "description": "Name of the new survey",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+		    {
+                        "name": "currency",
+                        "in": "query",
+                        "description": "Currency salary is paid in.",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+		    {
+                        "name": "period",
+                        "in": "query",
+                        "description": "Time period for salary.",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+		    {
+                        "name": "minEntries",
+                        "in": "query",
+                        "description": "Minimum number of entries before results are published.",
+                        "required": true,
+                        "type": "number",
+                        "format": "number"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "title": "ArrayOfResponses",
+                            "type": "array",
+                            "items": {
+                                "title": "Survey",
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "response": {
+                                        "type": "number"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

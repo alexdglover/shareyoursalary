@@ -1,0 +1,49 @@
+<h2>Thanks for creating a survey!</h1>
+<div class="row">
+        <div class="span6">
+		<legend>Survey Details</legend>
+		<p>Survey name: <?php echo $survey['name']; ?></p>
+		<p>Salary currency: <?php echo $survey['currency']; ?></p>
+		<p>Salary period: <?php echo $survey['period']; ?></p>
+		<p>Minimum number of responses before results published: <?php echo $survey['minEntries']; ?></p>
+		<p>Current number of responses: <?php echo count($survey['responses']); ?>
+	</div>
+	<div class="span6">
+		<legend>Next Steps</legend>
+		<ol>
+			<li>Invite others to participate<br />share buttons here<br />Or send them this link:<br /><a href="<?php echo "http://$_SERVER[HTTP_HOST]" . "/addResponse/" . $survey['name']; ?>"><?php echo "http://$_SERVER[HTTP_HOST]" . "/addResponse/" . $survey['name']; ?></a></li>
+			<li>Enter your salary<br />
+				<form>
+				<div class="input-append">
+					<input name="response" type="text" pattern="[0-9]*\.[0-9]{2}" placeholder="Enter your salary" />
+					<span class="add-on"><?php echo $survey['currency'] ?>&nbsp;<?php echo $survey['period'] ?></span>
+				</div>
+				<input id="submit" type="submit" class="btn btn-success" value="Submit" />
+				</form>
+			</li>
+			<li>
+				Once the minimum number of entries are met, see the salary analysis report here: <a href="<?php echo "http://$_SERVER[HTTP_HOST]" . "/report/" . $survey['name']; ?>"><?php echo "http://$_SERVER[HTTP_HOST]" . "/report/" . $survey['name']; ?></a>
+			</li>
+		</ol>
+	</div>
+</div>
+<script>
+	$( "form" ).on( "submit", function( event ) {
+		event.preventDefault();
+		var datastring = $( "form" ).serialize();
+		$.ajax({
+		    type: "POST",
+		    url: "/api/v1/survey/addResponse/<?php echo $survey['name'] ?>",
+		    data: datastring,
+		    dataType: "json",
+		    success: function(data) {
+			alert("Thanks! You've successfully entered your salary information.");
+		    },
+		    error: function(){
+		          alert('Oops... something wrong');
+		    }
+		});		
+
+
+	});
+</script>

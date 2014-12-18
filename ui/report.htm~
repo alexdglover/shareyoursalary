@@ -1,0 +1,61 @@
+<h2>Salary Analysis for Survey '<?php echo $survey['name']; ?>'</h1>
+<div class="row">
+	<?php if($minEntriesMet) { ?>
+        <div class="span6">
+		<legend>Survey Details</legend>
+		<p>Survey name: <?php echo $survey['name']; ?></p>
+		<p>Number of responses: <?php echo count($survey['responses']); ?></p>
+		<p>Average salary: <?php echo $averageSalary ?></p>
+		<p>Median salary: <?php echo $median ?></p>
+		<p>Salary currency: <?php echo $survey['currency']; ?></p>
+		<p>Salary period: <?php echo $survey['period']; ?></p>
+		<p>Minimum number of responses before results published: <?php echo $survey['minEntries']; ?></p>
+		<p>Current number of responses: <?php echo count($survey['responses']); ?>
+	</div>
+	<div class="span6">
+		<legend>National Benchmarks</legend>
+	</div>
+	<?php } else { ?>
+	<div class="span12">
+		Uh oh, minimum number of responses haven't been met yet. Minimum number of responses is <?php echo $survey['minEntries']; ?> and there have been <?php echo count($survey['responses']); ?> responses so far.<br /><br />No report data available.
+	</div>
+	<?php } ?>
+</div>
+<script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart']}]}"></script>
+<div id="chart_div" style="width: 100%; height: 500px;"></div>
+<script>
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+	var dataTable =	new google.visualization.DataTable();
+	dataTable.addColumn('number', 'Salary');
+	dataTable.addColumn('number', '% Delta');
+	<?php for($i=0; $i < count($survey['responses']); $i++){
+		echo 'dataTable.addRow(['. $survey['responses'][$i]. ',' . $percentDeltas[$i] . ']);';
+	};?>
+
+	var formatter = new google.visualization.NumberFormat({
+	    fractionDigits: 2,
+	    prefix: '$'
+	});
+
+	formatter.format(dataTable, 0); // Apply formatter to salary column.
+
+	var formatter = new google.visualization.NumberFormat({
+	    fractionDigits: 0,
+	    pattern: '###%'
+	});
+
+	formatter.format(dataTable, 1); // Apply formatter to percent delta column.
+	
+        var options = {
+          title: 'Salary comparison',
+          hAxis: {title: 'Salary', minValue: 0, maxValue: 10, format: '$#'},
+          vAxis: {title: 'Percent difference', minValue: -1, maxValue: 1, format: '#%'},
+          legend: 'none'
+        };
+
+        var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
+
+        chart.draw(dataTable, options);
+      }
+</script>
