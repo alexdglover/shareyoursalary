@@ -2,16 +2,22 @@
 <div class="row">
         <div class="span5">
 		<legend>Survey Details</legend>
-		<p>Survey name: <?php echo $survey['name']; ?></p>
-		<p>Salary currency: <?php echo $survey['currency']; ?></p>
-		<p>Salary period: <?php echo $survey['period']; ?></p>
-		<p>Minimum number of responses before results published: <?php echo $survey['minEntries']; ?></p>
-		<p>Current number of responses: <?php echo count($survey['responses']); ?>
+		<p><strong>Survey name</strong><br /><?php echo $survey['name']; ?></p>
+		<p><strong>Salary currency</strong><br /><?php echo $survey['currency']; ?></p>
+		<p><strong>Salary period</strong><br /><?php echo $survey['period']; ?></p>
+		<p><strong>Minimum number of responses before results published</strong><br /><?php echo $survey['minEntries']; ?></p>
+		<p><strong>Current number of responses</strong><br /><?php echo count($survey['responses']); ?></p>
 	</div>
 	<div class="span5">
 		<legend>Next Steps</legend>
 		<ol>
-			<li>Invite others to participate<br />share buttons here<br />Or send them this link:<br /><a href="<?php echo "http://$_SERVER[HTTP_HOST]" . "/addResponse/" . $survey['name']; ?>"><?php echo "http://$_SERVER[HTTP_HOST]" . "/addResponse/" . $survey['name']; ?></a></li>
+			<li>Invite others to participate by sharing<br />
+			<a target="_blank" href="<?php echo "http://www.facebook.com/sharer/sharer.php?u=" . "http://$_SERVER[HTTP_HOST]" . "/addResponse/" . $survey['name']; ?>"><img src="/ui/img/facebook_001.jpg" style="width:32px; height:32px;" /></a>
+			<a target="_blank" href="<?php echo "https://twitter.com/intent/tweet?text=How%20much%20do%20you%20make%3F&url=" . "http://$_SERVER[HTTP_HOST]" . "/addResponse/" . $survey['name']; ?>"><img src="/ui/img/Twitter_001.jpg" style="width:32px; height:32px;" /></a>
+			<a target="_blank" href="<?php echo "http://www.linkedin.com/shareArticle?mini=true&url=" . "http://$_SERVER[HTTP_HOST]" . "/addResponse/" . $survey['name'] . "&title=Salary%20Survey"; ?>"><img src="/ui/img/Linkedin_001.jpg" style="width:32px; height:32px;" /></a>
+			<a href="<?php echo "http://pinterest.com/pin/create/button/?url=" . "http://$_SERVER[HTTP_HOST]" . "/addResponse/" . $survey['name']; ?>"  class="pin-it-button" count-layout="horizontal"><img src="/ui/img/Pinterest_001.jpg" style="width:32px; height:32px;" /></a>
+<br />
+			Or by sending them this link:<br /><a href="<?php echo "http://$_SERVER[HTTP_HOST]" . "/addResponse/" . $survey['name']; ?>"><?php echo "http://$_SERVER[HTTP_HOST]" . "/addResponse/" . $survey['name']; ?></a></li>
 			<li>Enter your salary<br />
 				<form>
 				<div class="input-append">

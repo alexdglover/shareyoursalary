@@ -3,17 +3,17 @@
 	<?php if($minEntriesMet) { ?>
         <div class="span5">
 		<legend>Survey Details</legend>
-		<p>Survey name: <?php echo $survey['name']; ?></p>
-		<p>Number of responses: <?php echo count($survey['responses']); ?></p>
-		<p>Average salary: <?php echo $averageSalary ?></p>
-		<p>Median salary: <?php echo $median ?></p>
-		<p>Salary currency: <?php echo $survey['currency']; ?></p>
-		<p>Salary period: <?php echo $survey['period']; ?></p>
-		<p>Minimum number of responses before results published: <?php echo $survey['minEntries']; ?></p>
-		<p>Current number of responses: <?php echo count($survey['responses']); ?>
+		<p><strong>Survey name</strong><br /><?php echo $survey['name']; ?></p>
+		<p><strong>Average salary</strong><br /><?php echo $averageSalary ?> <?php echo $survey['currency']; ?> <?php echo $survey['period']; ?></p>
+		<p><strong>Median salary</strong><br /><?php echo $median ?> <?php echo $survey['currency']; ?> <?php echo $survey['period']; ?></p>
+		<!--<p><strong>Salary currency</strong><br /><?php echo $survey['currency']; ?></p>
+		<p><strong>Salary period</strong><br /><?php echo $survey['period']; ?></p>-->
+		<p><strong>Minimum number of responses before results published</strong><br /><?php echo $survey['minEntries']; ?></p>
+		<p><strong>Current number of responses</strong><br /><?php echo count($survey['responses']); ?>
 	</div>
 	<div class="span5">
-		<legend>National Benchmarks</legend>
+		<legend>Relative Salary Comparison</legend>
+		<div id="chart_div" style="width: 100%; height: 300px;"></div>
 	</div>
 	<?php } else { ?>
 	<div class="span12">
@@ -22,7 +22,7 @@
 	<?php } ?>
 </div>
 <script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart']}]}"></script>
-<div id="chart_div" style="width: 100%; height: 500px;"></div>
+<!--<div id="chart_div" style="width: 100%; height: 500px;"></div>-->
 <script>
       google.setOnLoadCallback(drawChart);
       function drawChart() {
