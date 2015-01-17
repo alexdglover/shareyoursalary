@@ -11,11 +11,26 @@ class PageGenerator {
 	public function __construct(){
 		$this->db = new Database();
 	}
-
+	
+	private function convertNameToURLName($string) {
+		//Lower case everything
+		$string = strtolower($string);
+		//Make alphanumeric (removes all other characters)
+		$string = preg_replace("/[^a-z0-9_\s-]/", "", $string);
+		//Clean up multiple dashes or whitespaces
+		$string = preg_replace("/[\s-]+/", " ", $string);
+		//Convert whitespaces and underscore to dash
+		$string = preg_replace("/[\s_]/", "-", $string);
+		return $string;
+	}
 
 	public function thanks($f3,$args){
 		$surveys = $this->db->get_collection('surveys');
-		$query = array('name' => $args['name']);
+
+		// Convert name to URL friendly name
+                $URLName = $this->convertNameToURLName($args['name']);
+
+		$query = array('URLName' => $URLName);
                 $cursor = $surveys->find($query);
                 foreach ($cursor as $doc){
 			$f3->set('survey',$doc);                	
@@ -26,7 +41,11 @@ class PageGenerator {
 
 	public function addResponse($f3,$args){
 		$surveys = $this->db->get_collection('surveys');
-		$query = array('name' => $args['name']);
+
+		// Convert name to URL friendly name
+                $URLName = $this->convertNameToURLName($args['name']);
+
+                $query = array('URLName' => $URLName);
                 $cursor = $surveys->find($query);
                 foreach ($cursor as $doc){
 			$f3->set('survey',$doc);                	
@@ -37,7 +56,11 @@ class PageGenerator {
 
 	public function report($f3,$args){
 		$surveys = $this->db->get_collection('surveys');
-		$query = array('name' => $args['name']);
+
+		// Convert name to URL friendly name
+                $URLName = $this->convertNameToURLName($args['name']);
+
+                $query = array('URLName' => $URLName);		
                 $cursor = $surveys->find($query);
 		foreach ($cursor as $doc)
 		{

@@ -14,7 +14,7 @@ class Database{
 		$passwd = $_ENV["OPENSHIFT_MONGODB_DB_PASSWORD"];
 		$port = $_ENV["OPENSHIFT_MONGODB_DB_PORT"];
 		$uri = "mongodb://" . $user . ":" . $passwd . "@" . $host . ":" . $port;
-		$mongo = new Mongo($uri);
+		$mongo = new MongoClient($uri);
 		return $mongo;
 	}
 	
@@ -28,11 +28,6 @@ class Database{
 		return $db->$collection;
 	}
 	
-	function add_survey($name,$currency,$period,$minentries){
-		$db = $this->get_database(OPENSHIFT_DB);
-		$surveys = $db->surveys;
-		$surveys->insert(array("name" => $name, "currency" => $currency, "period" => $period,"minentries" => $minentries));
-	}
 }
 
 ?>

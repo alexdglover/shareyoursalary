@@ -39,14 +39,10 @@
 		    data: datastring,
 		    dataType: "json",
 		    success: function(data) {
-			//var parsedJSON = $.parseJSON(data);
-			//alert(data);
-			//alert(typeof data);
-			//alert(data.name);
-		    	window.location.href = "/thanks/" + data.name;
+		    	window.location.href = "/thanks/" + data.URLName;
 		    },
 		    error: function(){
-		          alert('Oops... something wrong');
+		          alert('Oops... something went wrong. Please try again.');
 		    }
 		});		
 

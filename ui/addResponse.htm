@@ -21,7 +21,7 @@
 				</form>
 			</li>
 			<li>
-				Once the minimum number of entries are met, see the salary analysis report here: <a href="<?php echo "http://$_SERVER[HTTP_HOST]" . "/report/" . $survey['name']; ?>"><?php echo "http://$_SERVER[HTTP_HOST]" . "/report/" . $survey['name']; ?></a>
+				Once the minimum number of entries are met, see the salary analysis report here: <a href="<?php echo "http://$_SERVER[HTTP_HOST]" . "/report/" . $survey['URLName']; ?>"><?php echo "http://$_SERVER[HTTP_HOST]" . "/report/" . $survey['URLName']; ?></a>
 			</li>
 		</ol>
 	</div>
@@ -32,7 +32,7 @@
 		var datastring = $( "form" ).serialize();
 		$.ajax({
 		    type: "POST",
-		    url: "/api/v1/survey/addResponse/<?php echo $survey['name'] ?>",
+		    url: "/api/v1/survey/addResponse/<?php echo $survey['URLName'] ?>",
 		    data: datastring,
 		    dataType: "json",
 		    success: function(data) {
