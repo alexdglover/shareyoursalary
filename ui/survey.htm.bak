@@ -1,5 +1,0 @@
-<h1>stub</h1>
-<p>{{ @survey.name }}</p>
-<p>{{ @survey.currency }}</p>
-<p>{{ @survey.period }}</p>
-<p>{{ @survey.minEntries }}</p>

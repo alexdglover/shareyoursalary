@@ -13,17 +13,40 @@
 			<label>Survey Name</label>	
 			<input class="input-xlarge" name="surveyName" type="text" placeholder="Employer, team name, or totally arbitratry" />
 			<label>Currency</label>
-			<select class="input-small" name="currency">
-				<option value="USD">USD</option>
-				<option value="CAD">CAD</option>
+			<select class="input-medium" name="currency">
+				<option value="" disabled="">Select Currency</option>
+				<option value="AUD">Australian Dollar</option>
+				<option value="BRL">Brazilian Real </option>
+				<option value="CAD">Canadian Dollar</option>
+				<option value="CZK">Czech Koruna</option>
+				<option value="DKK">Danish Krone</option>
+				<option value="EUR">Euro</option>
+				<option value="HKD">Hong Kong Dollar</option>
+				<option value="HUF">Hungarian Forint </option>
+				<option value="ILS">Israeli New Sheqel</option>
+				<option value="JPY">Japanese Yen</option>
+				<option value="MYR">Malaysian Ringgit</option>
+				<option value="MXN">Mexican Peso</option>
+				<option value="NOK">Norwegian Krone</option>
+				<option value="NZD">New Zealand Dollar</option>
+				<option value="PHP">Philippine Peso</option>
+				<option value="PLN">Polish Zloty</option>
+				<option value="GBP">Pound Sterling</option>
+				<option value="SGD">Singapore Dollar</option>
+				<option value="SEK">Swedish Krona</option>
+				<option value="CHF">Swiss Franc</option>
+				<option value="TWD">Taiwan New Dollar</option>
+				<option value="THB">Thai Baht</option>
+				<option value="TRY">Turkish Lira</option>
+				<option value="USD" selected="YES">U.S. Dollar</option>
 			</select>
 			<label>Period</label>
-		        <select class="input-small" name="period">
+		        <select class="input-medium" name="period">
 	                	<option value="Per Year">Per Year</option>
         	        	<option value="Per Hour">Per Hour</option>
 	        	</select>
 			<label>Minimum number of responses <i class="icon-question-sign" data-toggle="popover" data-placement="top" title="Miniumum number of responses" data-content="In order to ensure anonymity, salary survey results won't be published until a minimum number of salary responses are submitted. Set this to '0' if you don't care about anonymity."></i></label>
-			<input class="input-small" name="minEntries" type="number" value=5 />
+			<input class="input-mini" name="minEntries" type="number" value=5 />
 			<p><input id="submit" type="submit" class="btn btn-success" value="Submit" /></p>
 		</form>
 	</div>
