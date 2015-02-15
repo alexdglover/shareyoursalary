@@ -10,7 +10,7 @@
 This application was created mainly as an excuse to experiment with new tools and platforms. You are free to use this application under the MIT license (basically, give me some credit and you can do whatever you want with it).
 
 ##Instance availability
-The 'production' instance of Share Your Salary can be found at http://shareyoursalary.alexdglover.com or http://shareyoursalary-alexdglover.rhcloud.com/
+The 'production' instance of Share Your Salary can be found at http://shareyoursalary.alexdglover.com or http://shareyoursalary-alexdglover.rhcloud.com/ 
 
 The 'development' instance, which will be destroyed in March 2015, can be found at http://dev2shareyoursalary-alexdglover.rhcloud.com/
 
