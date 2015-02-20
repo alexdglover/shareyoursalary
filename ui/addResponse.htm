@@ -14,7 +14,7 @@
 			<li>Enter your salary<br />
 				<form>
 				<div class="input-append">
-					<input name="response" type="text" pattern="[1-9]{1}[0-9]*(\.)?([0-9]{0,2})" placeholder="Enter your salary" />
+					<input name="response" type="text" pattern="[1-9]{1}[0-9]*\.?[0-9]{0,2}" placeholder="Enter your salary" />
 					<span class="add-on"><?php echo $survey['currency'] ?>&nbsp;<?php echo $survey['period'] ?></span>
 				</div>
 				<p><input id="submit" type="submit" class="btn btn-success" value="Submit" /></p>
