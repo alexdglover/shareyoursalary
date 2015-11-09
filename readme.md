@@ -12,8 +12,6 @@ This application was created mainly as an excuse to experiment with new tools an
 ##Instance availability
 The 'production' instance of Share Your Salary can be found at http://shareyoursalary.alexdglover.com or http://shareyoursalary-alexdglover.rhcloud.com/ 
 
-The 'development' instance, which will be destroyed in March 2015, can be found at http://dev2shareyoursalary-alexdglover.rhcloud.com/
-
 License
 ----
 
